@@ -15,7 +15,7 @@ triUmp <-read.csv(file="triUmpsal.csv",header=TRUE)
 
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?.  If you skimp in this section expect to be marked down in your grade. Paint a picture of the project a couple of paragraphs is expected!-->
 
-A new  preventative aides (triUmpsal) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Finish this!
+A new  preventative aides (triUmpsal) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Analyze the difference in pharmaseutical effect based on gender. How the the drug metabolizes based on drug use, causing an adverse reaction to the chemistry of the new preventive aides drug. And will the drug have the same effect or decrease response to any person of non-traditional sexual orientation. To see whether therapeutic vaccination is safe and can affect how the body responds to HIV infection.
 
 # Methods
 
@@ -41,6 +41,40 @@ This graph shows that the drug may be effective against aquiring Aids, and the p
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+The rationale for testing the study vaccine regimen in this subject population is because these individuals may have a relatively preserved immune function, which could be augmented by therapeutic vaccination. Noticed that many psychological, social and behavioral factors tend to influence the efficacy of medication and the overall therapeutic outcome for these individuals compared with those who are less suggestible.
+
+```{r}
+table1 <- xtabs(~treatment + DrugUser, data=triUmp, )
+rowPerc(table1)
+colPerc(table1)
+```
+```{r}
+table1 <- xtabs(~infected + DrugUser, data=triUmp)
+rowPerc(table1)
+colPerc(table1)
+```
+```{r}
+table1 <- xtabs(~treatment + LGBTQ, data=triUmp)
+rowPerc(table1)
+colPerc(table1)
+```
+```{r}
+table1 <- xtabs(~infected + LGBTQ, data=triUmp)
+rowPerc(table1)
+colPerc(table1)
+```
+```{r}
+table1 <- xtabs(~infected + gender, data=triUmp)
+rowPerc(table1)
+colPerc(table1)
+```
+```{r}
+table1 <- xtabs(~treatment + gender, data=triUmp)
+rowPerc(table1)
+colPerc(table1)
+```
+Females have a higher percent body fat than males which can affect the effectiveness of certain drugs
+
 
 ## Inferential Results
 

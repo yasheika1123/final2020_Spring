@@ -372,7 +372,7 @@ summary {
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?.  If you skimp in this section expect to be marked down in your grade. Paint a picture of the project a couple of paragraphs is expected!-->
-<p>A new preventative aides (triUmpsal) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Finish this!</p>
+<p>A new preventative aides (triUmpsal) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Analyze the difference in pharmaseutical effect based on gender. How the the drug metabolizes based on drug use, causing an adverse reaction to the chemistry of the new preventive aides drug. And will the drug have the same effect or decrease response to any person of non-traditional sexual orientation. To see whether therapeutic vaccination is safe and can affect how the body responds to HIV infection.</p>
 </div>
 <div id="methods" class="section level1">
 <h1>Methods</h1>
@@ -390,6 +390,80 @@ summary {
 <div id="numerical-descriptive-results" class="section level3">
 <h3>Numerical Descriptive Results</h3>
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+<p>The rationale for testing the study vaccine regimen in this subject population is because these individuals may have a relatively preserved immune function, which could be augmented by therapeutic vaccination. Noticed that many psychological, social and behavioral factors tend to influence the efficacy of medication and the overall therapeutic outcome for these individuals compared with those who are less suggestible.</p>
+<pre class="r"><code>table1 &lt;- xtabs(~treatment + DrugUser, data=triUmp, )
+rowPerc(table1)</code></pre>
+<pre><code>##          DrugUser
+## treatment     no    yes  Total
+##   drug     88.89  11.11 100.00
+##   placebo  87.76  12.24 100.00</code></pre>
+<pre class="r"><code>colPerc(table1)</code></pre>
+<pre><code>##          DrugUser
+## treatment     no   yes
+##   drug     49.03  46.3
+##   placebo  50.97  53.7
+##   Total   100.00 100.0</code></pre>
+<pre class="r"><code>table1 &lt;- xtabs(~infected + DrugUser, data=triUmp)
+rowPerc(table1)</code></pre>
+<pre><code>##         DrugUser
+## infected     no    yes  Total
+##     aids  86.47  13.53 100.00
+##     none  88.40  11.60 100.00</code></pre>
+<pre class="r"><code>colPerc(table1)</code></pre>
+<pre><code>##         DrugUser
+## infected     no    yes
+##    aids    4.66   5.51
+##    none   95.34  94.49
+##    Total 100.00 100.00</code></pre>
+<pre class="r"><code>table1 &lt;- xtabs(~treatment + LGBTQ, data=triUmp)
+rowPerc(table1)</code></pre>
+<pre><code>##          LGBTQ
+## treatment    gay straight  Total
+##   drug     10.23    89.77 100.00
+##   placebo   9.64    90.36 100.00</code></pre>
+<pre class="r"><code>colPerc(table1)</code></pre>
+<pre><code>##          LGBTQ
+## treatment    gay straight
+##   drug     50.19    48.55
+##   placebo  49.81    51.45
+##   Total   100.00   100.00</code></pre>
+<pre class="r"><code>table1 &lt;- xtabs(~infected + LGBTQ, data=triUmp)
+rowPerc(table1)</code></pre>
+<pre><code>##         LGBTQ
+## infected    gay straight  Total
+##     aids  10.14    89.86 100.00
+##     none   9.91    90.09 100.00</code></pre>
+<pre class="r"><code>colPerc(table1)</code></pre>
+<pre><code>##         LGBTQ
+## infected    gay straight
+##    aids    4.87     4.75
+##    none   95.13    95.25
+##    Total 100.00   100.00</code></pre>
+<pre class="r"><code>table1 &lt;- xtabs(~infected + gender, data=triUmp)
+rowPerc(table1)</code></pre>
+<pre><code>##         gender
+## infected      F      M  Total
+##     aids  34.49  65.51 100.00
+##     none  55.10  44.90 100.00</code></pre>
+<pre class="r"><code>colPerc(table1)</code></pre>
+<pre><code>##         gender
+## infected      F     M
+##    aids    3.03   6.8
+##    none   96.97  93.2
+##    Total 100.00 100.0</code></pre>
+<pre class="r"><code>table1 &lt;- xtabs(~treatment + gender, data=triUmp)
+rowPerc(table1)</code></pre>
+<pre><code>##          gender
+## treatment      F      M  Total
+##   drug     53.76  46.24 100.00
+##   placebo  54.47  45.53 100.00</code></pre>
+<pre class="r"><code>colPerc(table1)</code></pre>
+<pre><code>##          gender
+## treatment      F      M
+##   drug     48.39  49.09
+##   placebo  51.61  50.91
+##   Total   100.00 100.00</code></pre>
+<p>Females have a higher percent body fat than males which can affect the effectiveness of certain drugs</p>
 </div>
 </div>
 <div id="inferential-results" class="section level2">
