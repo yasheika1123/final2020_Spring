@@ -15,7 +15,7 @@ triUmp <-read.csv(file="triUmpsal.csv",header=TRUE)
 
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?.  If you skimp in this section expect to be marked down in your grade. Paint a picture of the project a couple of paragraphs is expected!-->
 
-A new  preventative aides (triUmpsal) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Analyze the difference in pharmaseutical effect based on gender. How the the drug metabolizes based on drug use, causing an adverse reaction to the chemistry of the new preventive aides drug. And will the drug have the same effect or decrease response to any person of non-traditional sexual orientation. To see whether therapeutic vaccination is safe and can affect how the body responds to HIV infection.
+A new  preventative aides (triUmpsal) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Analyze the difference in pharmaseutical effect based on gender. How the the drug metabolizes based on drug use, causing an adverse reaction to the chemistry of the new preventive aides drug. And will the drug have the same effect or decrease response to any person of non-traditional sexual orientation. And psycosocial status. To see whether therapeutic vaccination is safe and can affect how the body responds to HIV infection.
 
 # Methods
 
@@ -80,7 +80,16 @@ Females have a higher percent body fat than males which can affect the effective
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+adverse drug events and therapeutic efficacy
+
+
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+Inconclusion psychosocial factors have is always an important determining factor in treating patients with medications, it cannot overemphasize the importance in looking closely at the details to these factors. I propose psychosocialpharmacology is great determination in the effecicacy in clinical treatment development of the new antiviral treatment of AIDS. I expect that individuals of deep insight will take this issue into consideration.
