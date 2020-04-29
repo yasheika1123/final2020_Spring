@@ -20,10 +20,14 @@ A new  preventative aides (triUmpsal) is under test in clinical trials. Analyze 
 # Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
+because all vaiables are categorical, we use a bar chart for the graphical description, a cross tabulation for the numerical summary and a chi-squared, test and Fisher exact test for inference 
 
-#Results
+# Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
+
+$H_0$ : the vaccine has no effect on whether one contracts Aids or not
+$H_0$  the vaccine has an effect on whether one contracts Aids or not
 
 ## Descriptive Results
 
@@ -41,55 +45,109 @@ This graph shows that the drug may be effective against aquiring Aids, and the p
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
 The rationale for testing the study vaccine regimen in this subject population is because these individuals may have a relatively preserved immune function, which could be augmented by therapeutic vaccination. Noticed that many psychological, social and behavioral factors tend to influence the efficacy of medication and the overall therapeutic outcome for these individuals compared with those who are less suggestible.
 
 ```{r}
-table1 <- xtabs(~treatment + DrugUser, data=triUmp, )
+table1 <- xtabs(~infected + treatment, data=triUmp )
 rowPerc(table1)
 colPerc(table1)
 ```
-```{r}
-table1 <- xtabs(~infected + DrugUser, data=triUmp)
-rowPerc(table1)
-colPerc(table1)
-```
-```{r}
-table1 <- xtabs(~treatment + LGBTQ, data=triUmp)
-rowPerc(table1)
-colPerc(table1)
-```
-```{r}
-table1 <- xtabs(~infected + LGBTQ, data=triUmp)
-rowPerc(table1)
-colPerc(table1)
-```
-```{r}
-table1 <- xtabs(~infected + gender, data=triUmp)
-rowPerc(table1)
-colPerc(table1)
-```
-```{r}
-table1 <- xtabs(~treatment + gender, data=triUmp)
-rowPerc(table1)
-colPerc(table1)
-```
-Females have a higher percent body fat than males which can affect the effectiveness of certain drugs
+
+description of what the table says
 
 
-## Inferential Results
+```{r}
+table1 <- xtabs(~infected + treatment, data=triUmp)
+rowPerc(table1)
+colPerc(table1)
+```
+This table shows that among those who contracted Aids, .. 
 
-<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+### Inferential results
 
 ```{r}
 chisq.test(table1)
 chisqtestGC(table1)
 fisher.test(table1)
 ```
-adverse drug events and therapeutic efficacy
 
 
+### Question # 2
+$H_0$ : the vaccine has no effect on whether one in the LGBTQ community contracts Aids or not
+$H_A$  the vaccine has an effect on whether one contracts Aids or not
 
-# Discussion and Conclusion
+### graphic results
+```{r}
 
-<!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
-Inconclusion psychosocial factors have is always an important determining factor in treating patients with medications, it cannot overemphasize the importance in looking closely at the details to these factors. I propose psychosocialpharmacology is great determination in the effecicacy in clinical treatment development of the new antiviral treatment of AIDS. I expect that individuals of deep insight will take this issue into consideration.
+LGBTQdata = filter(triUmp, LGBTQ== 'gay')
+barchartGC(~infected + treatment,data=LGBTQdata, type = "percent")
+            
+```
+
+### numerical summary
+
+```{r}
+
+table1 <- xtabs(~infected + treatment, data=LGBTQdata)
+rowPerc(table1)
+colPerc(table1)
+```
+
+### inferential
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+the p-values show that 
+
+### question #3: does the drug have an effec on whether or not women contract Aids?
+
+$H_0$ : the vaccine has no effect on whether a female contracts Aids or not
+$H_A$  the vaccine has an effect on whether a female contracts Aids or not
+
+## Descriptive Results
+
+### Graphical Descriptive Results
+
+<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
+
+```{r}
+FemalesData = filter(triUmp, gender == 'F')
+barchartGC(~infected + treatment,data=FemalesData, type = "percent")
+            
+```
+This graph shows that the drug may be effective aquiring Aids, and the placebo group is a 50/50 effectiveness.
+
+
+### Numerical Descriptive Results
+
+<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+The rationale for testing the study vaccine regimen in this subject population is because these individuals may have a relatively preserved immune function, which could be augmented by therapeutic vaccination. Noticed that many psychological, social and behavioral factors tend to influence the efficacy of medication and the overall therapeutic outcome for these individuals compared with those who are less suggestible.
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=FemalesData )
+rowPerc(table1)
+colPerc(table1)
+```
+
+description of what the table says
+
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=FemalesData)
+rowPerc(table1)
+colPerc(table1)
+```
+This table shows that among those who contracted Aids, .. 
+
+### Inferential results
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
