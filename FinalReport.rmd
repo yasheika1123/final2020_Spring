@@ -15,19 +15,19 @@ triUmp <-read.csv(file="triUmpsal.csv",header=TRUE)
 
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?.  If you skimp in this section expect to be marked down in your grade. Paint a picture of the project a couple of paragraphs is expected!-->
 
-A new  preventative aides (triUmpsal) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Analyze the difference in pharmaseutical effect based on gender. How the the drug metabolizes based on drug use, causing an adverse reaction to the chemistry of the new preventive aides drug. And will the drug have the same effect or decrease response to any person of non-traditional sexual orientation. And psycosocial status. To see whether therapeutic vaccination is safe and can affect how the body responds to HIV infection.
+A new  preventative aides (triUmpsal) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Analyze the difference in pharmaceutical effect based on gender. How the the drug metabolizes based on drug use, causing an adverse reaction to the chemistry of the new preventive aides drug. And will the drug have the same effect or decrease response to any person of non-traditional sexual orientation. And psycosocial status. To see whether therapeutic vaccination is safe and can affect how the body responds to AIDS infection.
 
 # Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
-because all vaiables are categorical, we use a bar chart for the graphical description, a cross tabulation for the numerical summary and a chi-squared, test and Fisher exact test for inference 
+Because all vaiables are categorical, we use a bar chart for the graphical description, a cross tabulation for the numerical summary and a chi-squared, test and Fisher exact test for inference. 
 
 # Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
-$H_0$ : the vaccine has no effect on whether one contracts Aids or not
-$H_0$  the vaccine has an effect on whether one contracts Aids or not
+$H_0$ : the vaccine has no effect on whether one contracts Aids or not  
+$H_0$  the vaccine has an effect on whether one contracts Aids or not  
 
 ## Descriptive Results
 
@@ -54,7 +54,7 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
-description of what the table says
+The drug was ineffective on patients that are positive for the AIDS virus.
 
 
 ```{r}
@@ -74,8 +74,8 @@ fisher.test(table1)
 
 
 ### Question # 2
-$H_0$ : the vaccine has no effect on whether one in the LGBTQ community contracts Aids or not
-$H_A$  the vaccine has an effect on whether one contracts Aids or not
+$H_0$ : the vaccine has no effect on whether one in the LGBTQ community contracts Aids or not  
+$H_A$  the vaccine has an effect on whether one contracts Aids or not  
 
 ### graphic results
 ```{r}
@@ -103,10 +103,10 @@ fisher.test(table1)
 ```
 the p-values show that 
 
-### question #3: does the drug have an effec on whether or not women contract Aids?
+### question #3: does the drug have an effect on whether or not women contract Aids?
 
-$H_0$ : the vaccine has no effect on whether a female contracts Aids or not
-$H_A$  the vaccine has an effect on whether a female contracts Aids or not
+$H_0$ : the vaccine has no effect on whether a female contracts Aids or not  
+$H_A$  the vaccine has an effect on whether a female contracts Aids or not  
 
 ## Descriptive Results
 
@@ -119,14 +119,14 @@ FemalesData = filter(triUmp, gender == 'F')
 barchartGC(~infected + treatment,data=FemalesData, type = "percent")
             
 ```
-This graph shows that the drug may be effective aquiring Aids, and the placebo group is a 50/50 effectiveness.
+This graph shows that females are susceptible to contracting AIDS if the drug is used.
 
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+The rationale for testing the study vaccine regimen in this subject population is because these individuals may have a relatively preserved immune function, which could be augmented by therapeutic vaccination. Noticed that many psychological, social, and behavioral factors tend to influence the efficacy of the medication and the overall therapeutic outcome for these individuals compared with those who are less suggestible.
 
-The rationale for testing the study vaccine regimen in this subject population is because these individuals may have a relatively preserved immune function, which could be augmented by therapeutic vaccination. Noticed that many psychological, social and behavioral factors tend to influence the efficacy of medication and the overall therapeutic outcome for these individuals compared with those who are less suggestible.
 
 ```{r}
 table1 <- xtabs(~infected + treatment, data=FemalesData )
@@ -134,7 +134,7 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
-description of what the table says
+2.7 more likely to contract Aids if the drug is used vs. the placebo group.
 
 
 ```{r}
@@ -151,3 +151,58 @@ chisq.test(table1)
 chisqtestGC(table1)
 fisher.test(table1)
 ```
+The table shows there is 1.5 more to contract AIDS if the drug is used.
+
+### question #3: does the drug have an effec on whether or not men contract Aids?
+
+$H_0$ : the vaccine has no effect on whether a male contracts Aids or not  
+$H_A$  the vaccine has an effect on whether a male contracts Aids or not  
+
+## Descriptive Results
+
+### Graphical Descriptive Results
+
+<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
+
+```{r}
+MalesData = filter(triUmp, gender == 'M')
+barchartGC(~infected + treatment,data=MalesData, type = "percent")
+            
+```
+This graph shows that the drug may be effective of not acquiring  Aids, and the placebo group is a 50/50 effectiveness.
+
+
+### Numerical Descriptive Results
+
+<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+The rationale for testing the study vaccine regimen in this subject population is because these individuals may have a relatively preserved immune function, which could be augmented by therapeutic vaccination. Noticed that many psychological, social, and behavioral factors tend to influence the efficacy of the medication and the overall therapeutic outcome for these individuals compared with those who are less suggestible.
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=MalesData )
+rowPerc(table1)
+colPerc(table1)
+```
+
+This table shows that among those who contracted Aids,
+
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=MalesData)
+rowPerc(table1)
+colPerc(table1)
+```
+This table shows that among those who contracted Aids, .. 
+
+### Inferential results
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+This table shows there is a less than a 50% chance of males contracting AIDS if males take the drug.
+
+
+<!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+Inconclusion psychosocial factors always have a critical determining factor in treating patients with medications, and it cannot overemphasize the importance of looking closely at the details of these factors. I propose psychosocial pharmacology is a first determination in the efficacy in clinical treatment development of the new antiviral treatment of AIDS. I expect that individuals of deep insight will consider this issue.
